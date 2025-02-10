@@ -8,11 +8,18 @@ export default function RegisterScreen({ navigation }) {
   const [password, setPassword] = useState("");
 
   const handleRegister = async () => {
+    if (!email || !password) {
+      Alert.alert("Erreur", "Veuillez entrer un email et un mot de passe.");
+      return;
+    }
+
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log("Utilisateur créé:", userCredential.user);
       Alert.alert("Succès", "Compte créé !");
-      navigation.navigate("Login");
+      navigation.replace("Login"); // Redirige vers la connexion
     } catch (error) {
+      console.error("Erreur Firebase:", error);
       Alert.alert("Erreur", error.message);
     }
   };
@@ -20,8 +27,20 @@ export default function RegisterScreen({ navigation }) {
   return (
     <View style={{ padding: 20 }}>
       <Text style={{ fontSize: 20, marginBottom: 10 }}>Inscription</Text>
-      <TextInput placeholder="Email" onChangeText={setEmail} value={email} style={{ borderWidth: 1, padding: 10, marginBottom: 10 }} />
-      <TextInput placeholder="Mot de passe" secureTextEntry onChangeText={setPassword} value={password} style={{ borderWidth: 1, padding: 10, marginBottom: 10 }} />
+      <TextInput 
+        placeholder="Email" 
+        onChangeText={setEmail} 
+        value={email} 
+        keyboardType="email-address"
+        style={{ borderWidth: 1, padding: 10, marginBottom: 10 }} 
+      />
+      <TextInput 
+        placeholder="Mot de passe" 
+        secureTextEntry 
+        onChangeText={setPassword} 
+        value={password} 
+        style={{ borderWidth: 1, padding: 10, marginBottom: 10 }} 
+      />
       <Button title="S'inscrire" onPress={handleRegister} />
     </View>
   );
