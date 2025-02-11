@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, Image } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 
@@ -25,13 +25,9 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* Logo */}
-      {/*<Image source={require("../assets/logo.png")} style={styles.logo} />*/}
-
       <Text style={styles.title}>Bienvenue</Text>
       <Text style={styles.subtitle}>Connectez-vous pour continuer</Text>
 
-      {/* Champs de saisie */}
       <TextInput 
         placeholder="Email" 
         onChangeText={setEmail} 
@@ -47,13 +43,12 @@ export default function LoginScreen({ navigation }) {
         style={styles.input} 
       />
 
-      {/* Bouton de connexion */}
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
         <Text style={styles.loginButtonText}>Se connecter</Text>
       </TouchableOpacity>
 
-      {/* Redirection vers l'inscription */}
-      <TouchableOpacity onPress={() => navigation.navigate("RegisterScreen")}>
+      {/* Correction ici pour la navigation */}
+      <TouchableOpacity onPress={() => navigation.navigate("Register")}>
         <Text style={styles.registerText}>Créer un compte</Text>
       </TouchableOpacity>
     </View>
@@ -67,11 +62,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#f9f9f9",
     paddingHorizontal: 20,
-  },
-  logo: {
-    width: 100,
-    height: 100,
-    marginBottom: 20,
   },
   title: {
     fontSize: 24,
