@@ -3,7 +3,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
-import RegisterScreen from "./screens/RegisterScreen"; // ✅ Ajout de RegisterScreen
+import RegisterScreen from "./screens/RegisterScreen";
+import SettingsScreen from "./screens/SettingsScreen"; 
 import { AuthProvider, useAuth } from "./config/AuthContext";
 
 const Stack = createStackNavigator();
